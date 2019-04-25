@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment
 
   Copyright Sportsmatch 2019. 
 */
-class BaseFragment : Fragment() {
+open class BaseFragment : Fragment() {
 
     //Shared methods for fragments are defined here...
 

@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.devarthur.kotlinapp.extensions.setupToolbar
 import com.devarthur.kotlinapp.extensions.toast
+import android.content.Intent
+import com.devarthur.kotlinapp.domain.tipoCarro
 
 class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,13 +43,22 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
                 toast("Clicou em carros")
             }
             R.id.nav_item_carros_classicos -> {
-                toast("Clicou em carros clássicos")
+
+                val intent = Intent(context, CarrosActivity::class.java)
+                intent.putExtra("tipo", tipoCarro.classicos)
+                startActivity(intent)
             }
             R.id.nav_item_carros_esportivos -> {
-                toast("Clicou em carros esportivos")
+
+                val intent = Intent(context, CarrosActivity::class.java)
+                intent.putExtra("tipo", tipoCarro.esportivos)
+                startActivity(intent)
             }
             R.id.nav_item_carros_luxo -> {
-                toast("Clicou em carros luxo")
+
+                val intent = Intent(context, CarrosActivity::class.java)
+                intent.putExtra("tipo", tipoCarro.luxo)
+                startActivity(intent)
 
             }
             R.id.nav_item_site_livro -> {
