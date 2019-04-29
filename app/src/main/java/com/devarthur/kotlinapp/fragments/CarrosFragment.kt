@@ -18,7 +18,7 @@ class CarrosFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Check for the paramater that has been sent for the fragment
-        type = arguments?.getSerializable("tipo") as tipoCarro
+        type = arguments?.getSerializable("type") as tipoCarro
     }
 
     //Creates a view for the fragment
