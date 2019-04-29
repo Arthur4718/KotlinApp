@@ -12,6 +12,7 @@ import com.devarthur.kotlinapp.extensions.setupToolbar
 import com.devarthur.kotlinapp.extensions.toast
 import android.content.Intent
 import com.devarthur.kotlinapp.domain.tipoCarro
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,21 +45,22 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
             }
             R.id.nav_item_carros_classicos -> {
 
-                val intent = Intent(context, CarrosActivity::class.java)
-                intent.putExtra("tipo", tipoCarro.classicos)
-                startActivity(intent)
+                //Old way of using it
+//                val intent = Intent(context, CarrosActivity::class.java)
+//                intent.putExtra("tipo", tipoCarro.classicos)
+//                startActivity(intent)
+
+                //Now we have anko - it make it shorter to pass intents and parameters
+                startActivity<CarrosActivity>("type" to tipoCarro.classicos)
+
             }
             R.id.nav_item_carros_esportivos -> {
+                startActivity<CarrosActivity>("type" to tipoCarro.esportivos)
 
-                val intent = Intent(context, CarrosActivity::class.java)
-                intent.putExtra("tipo", tipoCarro.esportivos)
-                startActivity(intent)
             }
             R.id.nav_item_carros_luxo -> {
 
-                val intent = Intent(context, CarrosActivity::class.java)
-                intent.putExtra("tipo", tipoCarro.luxo)
-                startActivity(intent)
+                startActivity<CarrosActivity>("type" to tipoCarro.luxo)
 
             }
             R.id.nav_item_site_livro -> {

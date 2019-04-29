@@ -15,7 +15,7 @@ class CarrosActivity : BaseActivity() {
         setContentView(R.layout.activity_carros)
 
         //get values from bundle and use it to construct your fragment behavior/title
-        val type = intent.getSerializableExtra("tipo") as tipoCarro
+        val type = intent.getSerializableExtra("type") as tipoCarro
         val title = getString(type.string)
 
         //Toolbar : set up toolbar title and "up navigation"
