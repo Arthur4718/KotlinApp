@@ -9,6 +9,11 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.extensions.setupToolbar
+import android.view.animation.DecelerateInterpolator
+import android.animation.ObjectAnimator
+
+
+
 
 class WebViewActivity : AppCompatActivity() {
 
@@ -29,6 +34,9 @@ class WebViewActivity : AppCompatActivity() {
 
         //Looads the page
         setWebViewClient(webview)
+        //webview?.loadUrl(URL_SOBRE)
+        setProgressMax(progress, 100)
+        setProgressAnimate(progress, 100)
     }
 
     private fun setWebViewClient(webview: WebView?) {
@@ -39,6 +47,7 @@ class WebViewActivity : AppCompatActivity() {
                 //Starts the progress bar
                 progress?.visibility = View.VISIBLE
 
+
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
@@ -47,5 +56,16 @@ class WebViewActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun setProgressMax(pb: ProgressBar?, max: Int) {
+        pb!!.max = max * 100
+    }
+
+    private fun setProgressAnimate(pb: ProgressBar?, progressTo: Int) {
+        val animation = ObjectAnimator.ofInt(pb, "progress", pb!!.progress, progressTo * 100)
+        animation.duration = 500
+        animation.interpolator = DecelerateInterpolator()
+        animation.start()
     }
 }
