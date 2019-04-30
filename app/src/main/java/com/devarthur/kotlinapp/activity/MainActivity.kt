@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.devarthur.kotlinapp.extensions.setupToolbar
 import com.devarthur.kotlinapp.extensions.toast
-import android.content.Intent
+
 import com.devarthur.kotlinapp.domain.tipoCarro
 import org.jetbrains.anko.startActivity
 
@@ -64,7 +64,9 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
 
             }
             R.id.nav_item_site_livro -> {
-                toast("Clicou em site livro")
+
+                startActivity<WebViewActivity>()
+
 
             }
             R.id.nav_item_settings -> {
