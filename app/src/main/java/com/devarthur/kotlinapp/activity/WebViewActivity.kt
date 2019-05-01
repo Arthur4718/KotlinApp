@@ -52,7 +52,7 @@ class WebViewActivity : AppCompatActivity() {
 //            .show()
 
         //The same alert but using anko lib
-        alert ("Mensagem de alerta", "Titutlo"){
+        alert ("Mensagem de alerta", "Titulo"){
             positiveButton("ok"){ }
         }.show()
     }
