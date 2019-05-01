@@ -6,21 +6,17 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.extensions.setupToolbar
+import kotlinx.android.synthetic.main.activity_web_view.*
 
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AlertDialog
+
 import org.jetbrains.anko.alert
 
 
 class WebViewActivity : AppCompatActivity() {
 
     private val URL_SOBRE = "https://github.com/Arthur4718"
-    lateinit var webview : WebView
-    lateinit var progress : ProgressBar
-    lateinit var swipeToRefresh : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +25,10 @@ class WebViewActivity : AppCompatActivity() {
         val actionBar = setupToolbar(R.id.toolbar)
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        webview = findViewById<WebView>(R.id.webview)
-        progress = findViewById<ProgressBar>(R.id.progress)
-        swipeToRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeToRefresh)
+
         //Looads the page
         setWebViewClient(webview)
         webview.loadUrl(URL_SOBRE)
-
-
 
         //Swipe to refresh
         swipeToRefresh.setOnRefreshListener { webview.reload() }
@@ -72,7 +64,6 @@ class WebViewActivity : AppCompatActivity() {
                 super.onPageStarted(view, url, favicon)
                 //Starts the progress bar
                 progress.visibility = View.VISIBLE
-
 
             }
 
