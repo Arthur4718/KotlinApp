@@ -11,6 +11,7 @@ import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.extensions.setupToolbar
 
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.AlertDialog
 
 
 class WebViewActivity : AppCompatActivity() {
@@ -47,6 +48,15 @@ class WebViewActivity : AppCompatActivity() {
             R.color.refresh_progress_2,
             R.color.refresh_progress_3
         )
+
+
+        AlertDialog.Builder(this)
+            .setTitle("Este é um alerta ")
+            .setMessage("Está é uma mensagem")
+            .setPositiveButton("OK"){
+                dialog, which ->  dialog.dismiss()
+            }.create()
+            .show()
     }
 
     private fun setWebViewClient(webview: WebView?) {
