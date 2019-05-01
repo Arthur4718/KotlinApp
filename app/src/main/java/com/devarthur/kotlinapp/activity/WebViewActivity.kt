@@ -12,6 +12,7 @@ import com.devarthur.kotlinapp.extensions.setupToolbar
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
+import org.jetbrains.anko.alert
 
 
 class WebViewActivity : AppCompatActivity() {
@@ -50,13 +51,18 @@ class WebViewActivity : AppCompatActivity() {
         )
 
 
-        AlertDialog.Builder(this)
-            .setTitle("Este é um alerta ")
-            .setMessage("Está é uma mensagem")
-            .setPositiveButton("OK"){
-                dialog, which ->  dialog.dismiss()
-            }.create()
-            .show()
+//        AlertDialog.Builder(this)
+//            .setTitle("Este é um alerta ")
+//            .setMessage("Está é uma mensagem")
+//            .setPositiveButton("OK"){
+//                dialog, which ->  dialog.dismiss()
+//            }.create()
+//            .show()
+
+        //The same alert but using anko lib
+        alert ("Mensagem de alerta", "Titutlo"){
+            positiveButton("ok"){ }
+        }.show()
     }
 
     private fun setWebViewClient(webview: WebView?) {
