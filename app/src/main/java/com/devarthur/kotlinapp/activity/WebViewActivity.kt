@@ -18,9 +18,9 @@ import org.jetbrains.anko.alert
 class WebViewActivity : AppCompatActivity() {
 
     private val URL_SOBRE = "https://github.com/Arthur4718"
-    var webview : WebView? = null
-    var progress : ProgressBar? = null
-    var swipeToRefresh : SwipeRefreshLayout? = null
+    lateinit var webview : WebView
+    lateinit var progress : ProgressBar
+    lateinit var swipeToRefresh : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,17 +34,17 @@ class WebViewActivity : AppCompatActivity() {
         swipeToRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeToRefresh)
         //Looads the page
         setWebViewClient(webview)
-        webview?.loadUrl(URL_SOBRE)
+        webview.loadUrl(URL_SOBRE)
 
 
 
         //Swipe to refresh
-        swipeToRefresh?.setOnRefreshListener { webview?.reload() }
+        swipeToRefresh.setOnRefreshListener { webview.reload() }
 
 
 
         //Animation Colors
-        swipeToRefresh?.setColorSchemeResources(
+        swipeToRefresh.setColorSchemeResources(
             R.color.refresh_progress_1,
             R.color.refresh_progress_2,
             R.color.refresh_progress_3
@@ -71,14 +71,14 @@ class WebViewActivity : AppCompatActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 //Starts the progress bar
-                progress?.visibility = View.VISIBLE
+                progress.visibility = View.VISIBLE
 
 
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                progress?.visibility = View.INVISIBLE
+                progress.visibility = View.INVISIBLE
                 swipeToRefresh?.isRefreshing = false
             }
         }
