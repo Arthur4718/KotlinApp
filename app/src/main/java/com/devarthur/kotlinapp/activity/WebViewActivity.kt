@@ -9,17 +9,16 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.extensions.setupToolbar
-import android.view.animation.DecelerateInterpolator
-import android.animation.ObjectAnimator
 
-
+import android.support.v4.widget.SwipeRefreshLayout
 
 
 class WebViewActivity : AppCompatActivity() {
 
-    private val URL_SOBRE = "http://www.livroandroid.comm.br/sobre.htm"
+    private val URL_SOBRE = "https://github.com/Arthur4718"
     var webview : WebView? = null
     var progress : ProgressBar? = null
+    var swipeToRefresh : SwipeRefreshLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +27,26 @@ class WebViewActivity : AppCompatActivity() {
         val actionBar = setupToolbar(R.id.toolbar)
         actionBar.setDisplayHomeAsUpEnabled(true)
 
-        //Views
         webview = findViewById<WebView>(R.id.webview)
         progress = findViewById<ProgressBar>(R.id.progress)
-
+        swipeToRefresh = findViewById<SwipeRefreshLayout>(R.id.swipeToRefresh)
         //Looads the page
         setWebViewClient(webview)
-        //webview?.loadUrl(URL_SOBRE)
-        setProgressMax(progress, 100)
-        setProgressAnimate(progress, 100)
+        webview?.loadUrl(URL_SOBRE)
+
+
+
+        //Swipe to refresh
+        swipeToRefresh?.setOnRefreshListener { webview?.reload() }
+
+
+
+        //Animation Colors
+        swipeToRefresh?.setColorSchemeResources(
+            R.color.refresh_progress_1,
+            R.color.refresh_progress_2,
+            R.color.refresh_progress_3
+        )
     }
 
     private fun setWebViewClient(webview: WebView?) {
@@ -53,19 +63,11 @@ class WebViewActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 progress?.visibility = View.INVISIBLE
+                swipeToRefresh?.isRefreshing = false
             }
         }
 
     }
 
-    private fun setProgressMax(pb: ProgressBar?, max: Int) {
-        pb!!.max = max * 100
-    }
 
-    private fun setProgressAnimate(pb: ProgressBar?, progressTo: Int) {
-        val animation = ObjectAnimator.ofInt(pb, "progress", pb!!.progress, progressTo * 100)
-        animation.duration = 500
-        animation.interpolator = DecelerateInterpolator()
-        animation.start()
-    }
 }
