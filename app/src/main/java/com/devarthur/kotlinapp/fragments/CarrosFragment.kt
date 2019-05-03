@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,10 +40,10 @@ class CarrosFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater?.inflate(R.layout.fragment_carros, container, false)
-        val textView = view?.findViewById<TextView>(R.id.text)
+
         //Conversts string resource to string
-        val typeString = getString(type.string)
-        textView!!.text = "Carros $typeString"
+
+
 
         return view
     }
@@ -68,12 +69,14 @@ class CarrosFragment : BaseFragment() {
         //Search the itens
         this.carros = CarroService.getItens(context!!, type)
 
+        Log.d("arthurdebug", "Itens service: ${this.carros.toString()}")
+
         //Updates the list
         recyclerView?.adapter = CarroAdapter(carros,
             { carro : Carro ->
               toast("@Clicou no item ${carro.itemName}")
             }
 
-            )
+        )
     }
 }
