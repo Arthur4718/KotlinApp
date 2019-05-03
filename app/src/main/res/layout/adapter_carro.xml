@@ -36,7 +36,7 @@
                     android:layout_marginTop="6dp" />
             <!-- Barra de progresso enquanto carrega a foto -->
             <ProgressBar
-                    android:id="@+id/progress"
+                    android:id="@+id/card_progress"
                     style="@android:style/Widget.ProgressBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
