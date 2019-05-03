@@ -11,10 +11,10 @@ import android.widget.TextView
 import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.domain.Carro
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.adapter_carro.view.*
+
 
 //* Created by Arthur Gomes at 2019-05-01 00:56 - contact me at devarthur4718@gmail.com.br
-// Define o construtor que recebe (carros,onClick)
+// Defines the holder constructor  (carros,onClick)
 class CarroAdapter(
     val carros: List<Carro>,
     val onClick: (Carro) -> Unit) :
@@ -64,7 +64,20 @@ class CarroAdapter(
         holder.tNome.text = carro.itemName
         holder.progress.visibility = View.VISIBLE
         //Downloads and apply the image
+        Picasso.with(context).load(carro.urlFoto).fit().into(holder.img, object  : com.squareup.picasso.Callback{
+            override fun onSuccess() {
+                //Download ok
+                holder.progress.visibility = View.GONE
+            }
 
+            override fun onError() {
+                holder.progress.visibility = View.GONE
+            }
+
+        })
+
+        //Adds the click event
+        holder.itemView.setOnClickListener { onClick(carro) }
 
     }
 }
