@@ -12,16 +12,8 @@ class Carro {
     var latitude = ""
     var longitute = ""
 
-    override fun toString(): String {
-        return "Carro(itemId=$itemId, " +
-                "type=$type, " +
-                "itemName='$itemName', " +
-                "desc='$desc', " +
-                "urlFoto='$urlFoto', " +
-                "urlInfo='$urlInfo', " +
-                "urlVideo='$urlVideo', " +
-                "latitude='$latitude', " +
-                "longitute='$longitute')"
+    override fun toString(): String{
+        return "Carro(nome='$itemName')"
     }
 
 

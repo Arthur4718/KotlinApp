@@ -17,6 +17,7 @@ import com.devarthur.kotlinapp.R
 import com.devarthur.kotlinapp.adapter.CarroAdapter
 import com.devarthur.kotlinapp.domain.Carro
 import com.devarthur.kotlinapp.domain.CarroService
+import com.devarthur.kotlinapp.extensions.toast
 import kotlinx.android.synthetic.main.fragment_carros.*
 import org.jetbrains.anko.support.v4.toast
 
@@ -31,6 +32,8 @@ class CarrosFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         //Check for the paramater that has been sent for the fragment
         type = arguments?.getSerializable("type") as tipoCarro
+        Log.d("arthurdebug", "bundle type: $type")
+
     }
 
     //Creates a view for the fragment
@@ -72,11 +75,9 @@ class CarrosFragment : BaseFragment() {
         Log.d("arthurdebug", "Itens service: ${this.carros.toString()}")
 
         //Updates the list
-        recyclerView?.adapter = CarroAdapter(carros,
-            { carro : Carro ->
-              toast("@Clicou no item ${carro.itemName}")
-            }
-
-        )
+        recyclerView?.adapter = CarroAdapter(carros){
+            val carro = it
+            toast("cliccou")
+        }
     }
 }

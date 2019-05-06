@@ -4,26 +4,31 @@ import android.content.Context
 
 //* Created by Arthur Gomes at 2019-05-01 00:19 - contact me at devarthur4718@gmail.com.br
 object CarroService {
-    //Serch itens by type
 
+    //Search itens by tipe
+    fun getItens(context : Context, tipo : tipoCarro) : List<Carro> {
+        val tipoString = context.getString(tipo.string)
 
-        fun getItens(context : Context, tipo : tipoCarro) : List<Carro>{
+        //Creates an array
+        val carros = mutableListOf<Carro>()
 
-            val item_type = context.getString(tipo.string)
+        //Creating 20 itens.
+        val c = Carro()
 
-            val carros =  mutableListOf<Carro>()
+        //Iten dynamic name.
+        //c.itemName = "Carro $tipoString: $i "
+        for(i in 1..20){
+            //Dynamic item name.
+            c.itemName = "Carro $tipoString: $i"
+            c.desc = "Desc " + i
 
-            for(i in 1..20){
-                val item = Carro()
-                //Dinamic item name
+            //Fixed photo for test
+            c.urlFoto = "https://cdn.jamesedition.com/media/W1siZiIsImxpc3RpbmdfaW1hZ2VzLzIwMTkvMDIvMTMvMTMvMTYvNTAvY2MxNmVlOTctNDk0MC00YzI1LWJmOTItZWZmNGU5ZDMyMDE3LzNBXzY0MC5qcGciXSxbInAiLCJ0aHVtYiIsIjYwMHgzNTQjIl0sWyJwIiwiZW5jb2RlIiwianBnIixudWxsXV0/2018-ferrari-gtc4-lusso.jpg?sha=f9da207ddf8f993e"
 
-                item.itemName = "Item $item_type : $i"
-                item.desc = "Desc " + i
-                //img url
-                item.urlFoto = "http://www.livroandroid.com.br/livro/carros/espertivos/Ferrari_FF.png"
-                carros.add(item)
-            }
-            return carros
+            carros.add(c)
         }
+
+        return carros
+    }
 
 }
